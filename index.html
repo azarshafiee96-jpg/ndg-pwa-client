@@ -6,29 +6,66 @@
 
   <title>نیک دارو ایمن گستر</title>
 
-  <link rel="manifest" href="manifest.json" />
+  <!-- درست‌شده -->
+  <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#2f3192" />
 
-  <!-- iOS -->
+  <!-- iOS support -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="نیک دارو">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <h1>سلام! PWA فعال شد 🎉</h1>
+  <h1>سلام! PWA آماده نصب است 🎉</h1>
 
+  <!-- دکمه نصب -->
+  <button id="install-app-btn" style="display:none;" onclick="installApp()">
+    نصب اپ
+  </button>
 
   <!-- Register Service Worker -->
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js")
-        .then(reg => console.log("SW Registered ✔", reg))
-        .catch(err => console.error("SW Failed ❌", err));
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then((reg) => console.log("SW Registered ✔️"))
+        .catch((err) => console.error("SW Failed ❌", err));
+    }
+
+    let deferredPrompt = null;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      const btn = document.getElementById("install-app-btn");
+      btn.style.display = "block";
+      btn.disabled = false;
+    });
+
+    function installApp() {
+      if (!deferredPrompt) {
+        alert("امکان نصب اپ در دستگاه شما وجود ندارد.");
+        return;
+      }
+
+      deferredPrompt.prompt();
+
+      deferredPrompt.userChoice.then((choice) => {
+        if (choice.outcome === "accepted") {
+          console.log("App Installed ✔️");
+        } else {
+          console.log("Install dismissed ❌");
+        }
+        deferredPrompt = null;
+      });
     }
   </script>
+
 </body>
 </html>
+
