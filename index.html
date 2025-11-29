@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>نیک دارو ایمن گستر</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2f3192" />
+
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="نیک دارو">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h1>سلام! PWA فعال شد 🎉</h1>
+
+  <script src="app.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW Registered ✔", reg))
+        .catch(err => console.error("SW Failed ❌", err));
+    }
+  </script>
+</body>
+</html>
