@@ -21,12 +21,11 @@
 <body>
   <h1>سلام! PWA فعال شد 🎉</h1>
 
-  <script src="app.js"></script>
 
   <!-- Register Service Worker -->
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js")
+      navigator.serviceWorker.register("sw.js")
         .then(reg => console.log("SW Registered ✔", reg))
         .catch(err => console.error("SW Failed ❌", err));
     }
