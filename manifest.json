@@ -1,8 +1,8 @@
 {
   "name": "نیک دارو ایمن گستر",
   "short_name": "نیک دارو",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/ndg-pwa-client/",
+  "scope": "/ndg-pwa-client/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2f3192",
@@ -25,3 +25,4 @@
     }
   ]
 }
+
